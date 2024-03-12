@@ -37,7 +37,7 @@ public:
     }
 };
 
-int main(){
+int m2129n(){
     Solution s;
     string str = "l hV";
     string ans = s.capitalizeTitle(str);
