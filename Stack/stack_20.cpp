@@ -13,6 +13,8 @@ using namespace std;
 每个右括号都有一个对应的相同类型的左括号。
 */
 
+//自己的思路，需要用两个栈
+/*
 class Solution {
 public:
     bool isValid(string s) {
@@ -46,10 +48,23 @@ public:
             return false;
     }
 };
+*/
 
-int main(){
-    string s = "()[]{}";
-    Solution sou;
-    bool b = sou.isValid(s);
-    return 0;
-}
+//用一个栈解决问题，代码随想录给出
+class Solution {
+public:
+    bool isValid(string s) {
+        stack<int> st1;
+        int len = s.size();
+        for(int i = 0; i < len; i++){
+            if(!st1.empty() && ((st1.top() == '(' && s[i]==')')||(st1.top() == '[' && s[i]==']')||(st1.top() == '{' && s[i]=='}')))
+                st1.pop();
+            else
+                st1.push(s[i]);
+        }
+        if(st1.empty())
+            return true;
+        else
+            return false;
+    }
+};
