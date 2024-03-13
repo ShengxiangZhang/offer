@@ -7,3 +7,5 @@
 ## Stack 栈
 
 ## sort 排序算法
+
+## Note 随笔记录
