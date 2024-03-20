@@ -50,8 +50,9 @@ public:
 };
 */
 
-//用一个栈解决问题，代码随想录给出
-class Solution {
+//用一个栈解决问题
+//思路：如果这个符号串是正确的，那么从最内部的一个匹配的括号开始消除，最终这个符号串会完全消除/*
+/*class Solution {
 public:
     bool isValid(string s) {
         stack<int> st1;
@@ -67,4 +68,4 @@ public:
         else
             return false;
     }
-};
+};*/
