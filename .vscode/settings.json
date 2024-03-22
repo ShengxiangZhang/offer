@@ -3,6 +3,8 @@
         "vector": "cpp",
         "algorithm": "cpp",
         "queue": "cpp",
-        "stack": "cpp"
+        "stack": "cpp",
+        "xstring": "cpp",
+        "deque": "cpp"
     }
 }
