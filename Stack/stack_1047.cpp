@@ -3,8 +3,8 @@
 
 using namespace std;
 
-//用栈解决（单纯为了用栈而用栈）
-class Solution {
+//用栈解决
+/*class Solution {
 public:
     string removeDuplicates(string s) {
         //用了两个栈
@@ -31,5 +31,20 @@ public:
         }
         s.resize(count);
         return s;     
+    }
+};
+*/
+// 用字符串当栈,一个栈
+class Solution {
+public:
+    string removeDuplicates(string s) {
+        string res;
+        for(int i = 0; i < s.size(); i++){
+            if(!res.empty() && res.back() == s[i])
+                res.pop_back();
+            else
+                res.push_back(s[i]);
+        }
+        return res;
     }
 };
