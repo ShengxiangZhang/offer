@@ -5,6 +5,10 @@
         "queue": "cpp",
         "stack": "cpp",
         "xstring": "cpp",
-        "deque": "cpp"
+        "deque": "cpp",
+        "initializer_list": "cpp",
+        "ranges": "cpp",
+        "span": "cpp",
+        "xutility": "cpp"
     }
 }
