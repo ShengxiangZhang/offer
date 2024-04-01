@@ -1,8 +1,8 @@
 #include<iostream>
 #include<vector>
-
-/*给定一个二叉树的 根节点 root，想象自己站在它的右侧，按照从顶部到底部的顺序，返回从右侧所能看到的节点值。*/
+#include<queue>
 using namespace std;
+/*二叉树的最大深度*/
 
 struct TreeNode{
     int val;
@@ -13,31 +13,28 @@ struct TreeNode{
 
 class Solution {
 public:
-    vector<int> rightSideView(TreeNode* root) {
-        vector<vector<int>> res;
-        vector<int> r;
+    int minDepth(TreeNode* root) {
+        int depth = 0;
         queue<TreeNode*> que;
         if(root != nullptr)
             que.push(root);
         else
-            return r;
+            return depth;
         while(!que.empty()){
-            vector<int> vec;
-            // 每层的节点个数
             int size = que.size();
+            depth++;
             for(int i = 0; i<size; i++){
                 TreeNode* cur = que.front();
                 que.pop();
-                vec.push_back(cur->val);
                 if(cur->left != nullptr)
                     que.push(cur->left);
                 if(cur->right != nullptr)
                     que.push(cur->right);
+                if (!cur->left && !cur->right) // 当左右孩子都为空的时候，说明是最低点的一层了，退出
+                    return depth;
             }
-            res.push_back(vec);
+
         }
-        for(int i = 0; i<res.size();i++)
-            r.push_back(res[i][res[i].size()-1]);
-        return r;
+        return depth;
     }
 };
