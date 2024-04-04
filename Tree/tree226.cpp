@@ -1,6 +1,7 @@
 #include<iostream>
 #include<vector>
 #include<queue>
+#include<algorithm>
 
 using namespace std;    
 struct TreeNode{
@@ -10,6 +11,8 @@ struct TreeNode{
     TreeNode(int x): val(x), left(nullptr), right(nullptr);
 };
 
+// 层序遍历
+/*
 class Solution {
 public:
     TreeNode* invertTree(TreeNode* root) {
@@ -34,6 +37,19 @@ public:
                     que.push(cur->right);
             }
         }
+        return root;
+    }
+};*/
+
+//递归写法
+class Solution{
+public:
+    TreeNode* invertTree(TreeNode* root) {
+        if(root == nullptr)
+            return root;
+        swap(root->left, root->right);
+        invertTree(root->left);
+        invertTree(root->right);
         return root;
     }
 };
