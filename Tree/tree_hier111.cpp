@@ -4,6 +4,8 @@
 using namespace std;
 /*二叉树的最大深度*/
 
+
+
 struct TreeNode{
     int val;
     TreeNode* left;
@@ -11,7 +13,8 @@ struct TreeNode{
     TreeNode(int x): val(x), left(nullptr), right(nullptr){}
 };
 
-class Solution {
+// 层次遍历
+/*class Solution {
 public:
     int minDepth(TreeNode* root) {
         int depth = 0;
@@ -37,4 +40,4 @@ public:
         }
         return depth;
     }
-};
+};*/

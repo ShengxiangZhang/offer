@@ -11,6 +11,8 @@ struct TreeNode{
     TreeNode(int x): val(x), left(nullptr), right(nullptr){}
 };
 
+// 迭代法
+/*
 class Solution {
 public:
     int maxDepth(TreeNode* root) {
@@ -33,5 +35,29 @@ public:
             depth++;
         }
         return depth;
+    }
+};*/
+
+class Solution {
+public:
+    int res;
+    void getdepth(TreeNode* cur, int depth){
+        if(depth > res)
+            res = depth;
+        if(cur->left == nullptr && cur->right == nullptr)
+            return;
+        if(cur->left != nullptr)
+            getdepth(cur->left, depth+1);
+        if(cur->right != nullptr)
+            getdepth(cur->right, depth+1);
+        return;
+
+    }
+    int maxDepth(TreeNode* root) {
+        res = 0;
+        if(root == nullptr)
+            return res;
+        getdepth(root, 1);
+        return res;
     }
 };
