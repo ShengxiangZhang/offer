@@ -42,14 +42,15 @@ public:
 };*/
 
 //递归写法
-class Solution{
+class Solution {
 public:
     TreeNode* invertTree(TreeNode* root) {
-        if(root == nullptr)
-            return root;
-        swap(root->left, root->right);
+        if(!root)
+            return;
+        
         invertTree(root->left);
         invertTree(root->right);
+        swap(root->left, root->right);
         return root;
     }
 };

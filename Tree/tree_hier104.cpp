@@ -37,27 +37,24 @@ public:
         return depth;
     }
 };*/
-
 class Solution {
 public:
     int res;
-    void getdepth(TreeNode* cur, int depth){
+    void mDepth(TreeNode* cur, int depth){
         if(depth > res)
             res = depth;
-        if(cur->left == nullptr && cur->right == nullptr)
+        if(!cur->left && !cur->right)
             return;
-        if(cur->left != nullptr)
-            getdepth(cur->left, depth+1);
-        if(cur->right != nullptr)
-            getdepth(cur->right, depth+1);
-        return;
-
+        if(cur->left)
+            mDepth(cur->left, depth+1);
+        if(cur->right)
+            mDepth(cur->right, depth+1);
     }
     int maxDepth(TreeNode* root) {
         res = 0;
-        if(root == nullptr)
+        if(!root)
             return res;
-        getdepth(root, 1);
+        mDepth(root, 1);
         return res;
     }
 };

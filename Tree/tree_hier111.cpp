@@ -41,3 +41,27 @@ public:
         return depth;
     }
 };*/
+
+// 递归法
+class Solution {
+public:
+    // res初始化为最大值
+    int res = INT_MAX;
+    void mDepth(TreeNode* root, int depth){
+        if(!root)
+            return;
+        if(!root->left && !root->right)
+            res =  min(res, depth);
+        if(root->left)
+            mDepth(root->left, depth+1);
+        if(root->right)
+            mDepth(root->right, depth+1);
+    }
+
+    int minDepth(TreeNode* root) {
+        if(!root)
+            return 0;
+        mDepth(root, 1);
+        return res;
+    }
+};
