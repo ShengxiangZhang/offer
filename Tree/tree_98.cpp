@@ -1,5 +1,6 @@
 #include<iostream>
 #include<vector>
+#include<stack>
 
 using namespace std;
 
@@ -12,6 +13,7 @@ struct TreeNode{
 };
 
 // 中序遍历的二叉搜索数是有序的
+/*
 class Solution {
 public:
 
@@ -33,4 +35,48 @@ public:
         }
         return true;
     }
-};
+};*/
+
+// 递归方法 
+/*class Solution {
+public:
+    long long max = LONG_LONG_MIN;
+    bool isValidBST(TreeNode* root) {
+        if(!root)
+            return true;
+
+        bool left = isValidBST(root->left);
+
+        if(root->val <= max)
+            return false;
+        max = root->val;
+        
+        bool right = isValidBST(root->right);
+        return left && right;
+    }
+};*/
+
+// 迭代方法
+/*class Solution {
+public:
+    bool isValidBST(TreeNode* root) {
+        stack<TreeNode*> st;
+        TreeNode* cur = root;
+        long long pre = LONG_LONG_MIN;
+        while(cur || !st.empty()){
+            if(cur){
+                st.push(cur);
+                cur = cur->left;
+            }
+            else{
+                cur = st.top();
+                st.pop();
+                if(cur->val <= pre)
+                    return false;
+                pre = cur->val;
+                cur = cur->right;
+            }
+        }
+        return true;
+    }
+};*/
