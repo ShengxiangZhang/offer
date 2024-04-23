@@ -5,6 +5,7 @@
 
 using namespace std;
 
+// 回溯
 class Solution {
 public:
     vector<vector<int>> res;
@@ -19,7 +20,35 @@ public:
             return;
         }
 
-        for(int i = index; i < 9 - (k-path.size()) + 1; i++){
+        for(int i = index; i <= 9 - (k-path.size()) + 1; i++){
+            path.push_back(i);
+            backtracking(k, n, i+1);
+            path.pop_back();
+        }
+    }
+
+    vector<vector<int>> combinationSum3(int k, int n) {
+        backtracking(k, n, 1);
+        return res;
+    }
+};
+
+// 剪枝
+class Solution {
+public:
+    vector<vector<int>> res;
+    vector<int> path;
+    void backtracking(int k, int n, int index){
+        if(path.size() == k){
+            int sum = 0;
+            for(int i = 0; i < k; i++)
+                sum += path[i];
+            if(sum == n)
+                res.push_back(path);
+            return;
+        }
+
+        for(int i = index; i <= 9 - (k-path.size()) + 1; i++){
             path.push_back(i);
             backtracking(k, n, i+1);
             path.pop_back();
