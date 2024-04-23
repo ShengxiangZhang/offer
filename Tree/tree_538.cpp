@@ -13,7 +13,7 @@ struct TreeNode{
 };
 
 // 迭代法，两次中序 （起始可以做一次反中序遍历）
-class Solution {
+/*class Solution {
 public:
     TreeNode* convertBST(TreeNode* root) {
         stack<TreeNode*> st;
@@ -35,9 +35,10 @@ public:
         }  
         int len = sum.size();
         // 得到sum是一个顺序序列，进行累加
-        for(int i = len-1; i >= 0; i--)
+        for(int i = len-2; i >= 0; i--)
             sum[i] += sum[i+1];
-        int k = len-1;
+
+        int k = 0;
         cur = root;
         while (!st.empty() || cur)
         {
@@ -48,11 +49,58 @@ public:
             else{
                 cur = st.top();
                 st.pop();
-                cur->val = sums[k];
-                k--;
+                cur->val = sum[k];
+                k++;
                 cur = cur->right;
             }
         }
+        return root;
+    }
+};*/
+
+// 反中序遍历
+class Solution {
+public:
+    TreeNode* convertBST(TreeNode* root) {
+        stack<TreeNode*> st;
+        TreeNode * cur;
+        cur = root;
+        int sum = 0;
+        while(cur || !st.empty()){
+            if(cur){
+                st.push(cur);
+                cur = cur->right;
+            }
+            else{
+                cur = st.top();
+                st.pop();
+                sum += cur->val;
+                cur->val = sum;
+                cur = cur->left;
+            }
+        }
+        return root;
+    }
+};
+
+// 递归遍历
+class Solution {
+public:
+
+    // 反中序递归，右左中
+    int sum = 0;
+    void traversal(TreeNode* root){
+        if(!root)
+            return;
+        traversal(root->right);
+        sum += root->val;
+        root->val = sum;
+        traversal(root->left);
+        return;
+    }
+
+    TreeNode* convertBST(TreeNode* root) {
+        traversal(root);
         return root;
     }
 };
