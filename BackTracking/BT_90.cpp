@@ -1,6 +1,7 @@
 #include<iostream>
 #include<vector>
 #include<algorithm>
+#include<unordered_set>
 
 using namespace std;
 
@@ -8,32 +9,28 @@ class Solution {
 public:
     vector<vector<int>> res;
 
-    void backtracking(vector<int>& nums, int index, vector<int>& vec, vector<bool>& used){
+    void backtracking(vector<int>& nums, int index, vector<int>& vec){
         if(index == nums.size())
             return;
 
+        // 使用set对本层元素去重
+        unordered_set<int> uset;
         for(int i = index; i < nums.size(); i++){
-            if(vec.size() == 0 || (vec.size() > 0 && nums[i] >= vec[vec.size()-1])){
-                if(i > 0 && nums[i-1] == nums[i] && used[i-1] == false)
-                    continue;
-                vec.push_back(nums[i]);
-                used[i] = true;
-                if(vec.size() > 1)
-                    res.push_back(vec);
-                backtracking(nums, i+1, vec, used);
-                vec.pop_back();
-                used[i] = false;
-            }
-            else
+            // 这题去重不一样，这题不能对nums进行排序，不能用之前的方法去重
+            if(!vec.empty() && nums[i] < vec.back() || uset.find(nums[i]) != uset.end())
                 continue;
+            vec.push_back(nums[i]);
+            uset.insert(nums[i]);
+            if(vec.size() > 1)
+                res.push_back(vec);
+            backtracking(nums, i+1, vec);
+            vec.pop_back();
         }
-
     }
+
     vector<vector<int>> findSubsequences(vector<int>& nums) {
         vector<int> vec;
-        vector<bool> used(nums.size(), false);
-        sort(nums.begin(), nums.end());
-        backtracking(nums, 0, vec, used);
+        backtracking(nums, 0, vec);
         return res;
     }
 };
