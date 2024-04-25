@@ -14,11 +14,13 @@ public:
         if(depth == 4){
             if(index == s.size()){
                 res.push_back(vec);
-            return;
             }
+            return;
         }
         for(int i = index; i < s.size() && i < index + 3; i++){
             string substr = s.substr(index, i-index+1);
+            if(substr.size() > 1 && substr[index] == '0')
+                continue;
             int num = stoi(substr);
             if(num >= 0 && num <= 255)
                 vec.push_back(substr);
@@ -29,20 +31,30 @@ public:
         }
 
     }
-    void restoreIpAddresses(string s){
+    vector<string> restoreIpAddresses(string s){
+        vector<string> r;
         backtracking(0, s, 0);
+        cout << res.size() << endl;
         for(int i = 0; i < res.size(); i++){
-            for(int j = 0; j < res[i].size();j++)
-                cout << res[i][j] << ".";
-            cout << "\n";
+            string temp;
+            for(int j = 0; j < res[i].size(); j++){
+                temp += res[i][j];
+                if(j != res[i].size() - 1)
+                    temp += ".";
+            }
+            r.push_back(temp);
         }
+        return r;
     }
 };
 
+
 int main(){
-    string str = "25525511135";
+    string str = "101023";
     Solution s;
-    s.restoreIpAddresses(str);
+    vector<string> res = s.restoreIpAddresses(str);
+    for(int i = 0; i < res.size(); i++)
+        cout << res[i] << endl;
     system("pause");
     return 0;
 }
