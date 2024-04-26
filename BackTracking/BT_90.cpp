@@ -30,7 +30,7 @@ public:
 
     vector<vector<int>> findSubsequences(vector<int>& nums) {
         vector<int> vec;
-        backtracking(nums, 0, vec);
+        backtracking(nums, 0, vec); 
         return res;
     }
 };
