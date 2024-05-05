@@ -35,13 +35,20 @@ public:
         // 剩油量数组   
         vector<int> rest;
         for(int i = 0; i < gas.size(); i++)
-            rest[i] = gas[i] - cost[i];
-        int sum = 0;
-
-        
+            rest.push_back(gas[i] - cost[i]);
+        int curSum = 0;
+        int totalSum = 0;
+        int index = 0;
         for(int i = 0; i < gas.size(); i++){
-            
+            totalSum += rest[i];
+            curSum += rest[i];
+            if(curSum < 0){
+                curSum = 0;
+                index = i + 1;
+            }
         }
-        // 当rest数组
+        if(totalSum < 0)
+            return -1;
+        return index;
     }
 };
