@@ -13,7 +13,7 @@ int main(){
 
     // 完全背包问题，每个物品可以无限选择，先遍历容量再遍历物品
     for(int i = 1; i <= n; i++){
-        for(int j = 1; j <= m; j++){
+        for(int j = 1; j <= m; j++){    
             if(i - j >= 0)
                 dp[i] += dp[i-j];
         }
