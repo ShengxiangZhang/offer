@@ -8,7 +8,7 @@ using namespace std;
 
 class Solution {
 public:
-    const bool comp(int a, int b){
+    static bool comp(int a, int b){
         return a > b;
     }
     int maximumLength(string s) {
