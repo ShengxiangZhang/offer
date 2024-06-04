@@ -23,7 +23,6 @@ public:
 
         return;
     }
-
     int numIslands(vector<vector<char>>& grid) {
         int res = 0;
         for(int i = 0; i < grid.size(); i++){
@@ -38,8 +37,6 @@ public:
     }
 };
 
-
-
 /*
 class Solution {
 public:
@@ -51,11 +48,8 @@ public:
             pair<int ,int> cur = que.front(); 
             que.pop();
             grid[i][j] = '2';
-            
-
         }
     }
-
     int numIslands(vector<vector<char>>& grid) {
         int res = 0;
         for(int i = 0; i < grid.size(); i++){
