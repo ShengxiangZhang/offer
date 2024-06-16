@@ -63,7 +63,6 @@ public:
 };
 
 int main(){
-
     vector<vector<int>> grid = {{0,0,0,0,0,0,0},
                                 {0,1,1,1,1,0,0},
                                 {0,1,0,0,1,0,0},
@@ -74,6 +73,4 @@ int main(){
     Solution s;
     int res = s.largestIsland(grid);
     return 0;
-
-    
 }
