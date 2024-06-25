@@ -16,11 +16,10 @@ using namespace std;
 //     return 0;
 // }
 
+
 int main(){
-    string s = "ssssss1111";
-    int t = isdigit('1');
-    bool b = true;
-    cout << b << endl;
+    int a = 1 << 2;
+    cout << a << endl;
     system("pause");
     return 0;
 }
